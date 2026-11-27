@@ -55,8 +55,10 @@ def get_api_key():
     if not key:
         try:
             key = st.secrets.get("GEMINI_API_KEY", "").strip()
-        except Exception:
-            key""
+        except Exception as e:
+    st.error("Gemini API error:")
+    st.exception(e)
+            
 
     return key
 
