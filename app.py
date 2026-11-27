@@ -56,8 +56,7 @@ def get_api_key():
         try:
             key = st.secrets.get("GEMINI_API_KEY", "").strip()
         except Exception:
-            key = "st.error("Gemini API error:")
-    st.exception(e)
+            key""
 
     return key
 
@@ -291,7 +290,7 @@ if user_prompt:
 
         except Exception as error:
             # Keep technical details out of the user-facing message.
-            error_name = type(error).__name__
+            error_name =  st.error(f"Error: {type(e).__name__}: {e}")
             friendly_error = (
                 "Sorry, abhi AI response generate nahi ho paaya. "
                 "Internet connection, API key, model availability aur API "
