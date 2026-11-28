@@ -273,6 +273,7 @@ if user_prompt:
         st.session_state.messages.append(
             {"role": "assistant", "content": error_text}
         )
+    
     else:
         try:
             client = get_gemini_client(api_key)
@@ -285,32 +286,28 @@ if user_prompt:
                         personality=st.session_state.personality,
                         language=st.session_state.language,
                     )
-                st.markdown(answer)
+
+                    st.markdown(answer)
 
             st.session_state.messages.append(
                 {"role": "assistant", "content": answer}
             )
 
-         
-try:
-    # Tumhara existing AI response wala code
-
-except Exception as error:
-    friendly_error = (
-        "Sorry, abhi AI response generate nahi ho paaya. "
-        "API quota ya model availability check karein."
-    )
-    st.error(friendly_error)
-    
-                "quota check karke dobara try karein."
+        except Exception as error:
+            friendly_error = (
+                "Sorry, abhi AI response generate nahi ho paaya. "
+                "Please thodi der baad dobara try karein."
             )
-            if "API" in error_name or "Client" in error_name:
-                friendly_error += (
-                    "\n\nAPI key ya Gemini API access mein problem ho sakti hai."
+
+            if "429" in str(error) or "RESOURCE_EXHAUSTED" in str(error):
+                friendly_error = (
+                    "Gemini API ki free quota limit khatam ho gayi hai. "
+                    "Quota reset hone ke baad dobara try karein."
                 )
 
             with st.chat_message("assistant"):
                 st.error(friendly_error)
+
             st.session_state.messages.append(
                 {"role": "assistant", "content": friendly_error}
             )
