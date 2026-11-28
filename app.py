@@ -291,12 +291,15 @@ if user_prompt:
                 {"role": "assistant", "content": answer}
             )
 
-        except Exception as error:
-            # Keep technical details out of the user-facing message.
-            
-        except Exception as error:
-    friendly_error = ("Sorry, abhi AI response generate nahi ho paaya. "
-        "API quota ya model availability check karein."   )
+         
+try:
+    # Tumhara existing AI response wala code
+
+except Exception as error:
+    friendly_error = (
+        "Sorry, abhi AI response generate nahi ho paaya. "
+        "API quota ya model availability check karein."
+    )
     st.error(friendly_error)
     
                 "quota check karke dobara try karein."
