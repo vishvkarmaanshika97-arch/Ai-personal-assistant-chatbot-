@@ -18,7 +18,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-3.1-flash-lite")
+MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-3.8-flash-lite")
 
 PERSONALITIES = {
     "Professional": (
