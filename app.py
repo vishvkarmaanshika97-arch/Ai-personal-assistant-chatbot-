@@ -293,10 +293,12 @@ if user_prompt:
 
         except Exception as error:
             # Keep technical details out of the user-facing message.
-            error_name =  st.error(f"Error: {type(e).__name__}: {e}")
-            friendly_error = (
-                "Sorry, abhi AI response generate nahi ho paaya. "
-                "Internet connection, API key, model availability aur API "
+            
+        except Exception as error:
+    friendly_error = ("Sorry, abhi AI response generate nahi ho paaya. "
+        "API quota ya model availability check karein."   )
+    st.error(friendly_error)
+    
                 "quota check karke dobara try karein."
             )
             if "API" in error_name or "Client" in error_name:
