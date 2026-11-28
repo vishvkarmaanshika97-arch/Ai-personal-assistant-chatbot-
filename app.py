@@ -48,19 +48,20 @@ LANGUAGES = {
 # ---------------------------------------------------------
 # 2. HELPER FUNCTIONS
 # ---------------------------------------------------------
+
 def get_api_key():
     """Read the API key from environment variables or Streamlit secrets."""
+
     key = os.getenv("GEMINI_API_KEY", "").strip()
 
     if not key:
         try:
-            key = st.secrets.get("GEMINI_API_KEY", "").strip()        
-    except Exception as e:
-    st.error("Gemini API error:")
-    st.exception(e)
-            
+            key = st.secrets.get("GEMINI_API_KEY", "").strip()
+        except Exception:
+            key = ""
 
     return key
+    
 
 
 @st.cache_resource(show_spinner=False)
